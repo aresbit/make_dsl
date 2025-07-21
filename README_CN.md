@@ -43,14 +43,34 @@ dune install
 ### 使用
 
 ```bash
-# 编译 Makefile
-make_dsl examples/simple.mk
+# 步骤1：编译make DSL编译器
+dune build
+# 生成：./_build/default/src/main.exe
 
-# 指定输出可执行文件名
-make_dsl examples/simple.mk mybuild
+# 步骤2：准备一个Makefile
+cat > Makefile << 'EOF'
+CC = gcc
+CFLAGS = -Wall -O2
+TARGET = hello
 
-# 运行生成的构建系统
-./mybuild
+$(TARGET): main.c
+	$(CC) $(CFLAGS) -o $(TARGET) main.c
+
+clean:
+	rm -f $(TARGET)
+EOF
+
+# 步骤3：用make编译器编译Makefile
+./_build/default/src/main.exe Makefile my_build_tool
+# 这一步做了：
+# - 读取Makefile
+# - 解析成AST
+# - 生成OCaml代码（my_build_tool.ml）
+# - 编译OCaml代码成可执行文件（my_build_tool）
+
+# 步骤4：使用生成的构建工具
+./my_build_tool
+# 这会执行Makefile中定义的构建规则
 ```
 
 ## 支持的语法
@@ -62,6 +82,7 @@ CFLAGS = -Wall -O2
 OBJECTS = main.o utils.o
 ```
 
+## 不支持的语法-高阶makefile
 ### 构建规则
 ```makefile
 program: $(OBJECTS)
@@ -71,7 +92,7 @@ program: $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 ```
 
-### 特殊变量
+### 下一步计划支持特殊变量
 - `$@` - 目标名称
 - `$^` - 所有依赖项
 - `$<` - 第一个依赖项
@@ -94,7 +115,7 @@ utils.o: utils.c
 	$(CC) -c utils.c
 ```
 
-### 带变量的复杂构建
+### 带变量的复杂构建--todo
 ```makefile
 # examples/variables.mk
 CXX = g++
@@ -188,4 +209,4 @@ MIT 许可证 - 详见 LICENSE 文件。
 
 ## 贡献
 
-欢迎贡献！请阅读 CONTRIBUTING.md 了解指南。
+欢迎贡献！请阅读 SUPPORTED_SYNTAX_TODO.md 了解指南。
