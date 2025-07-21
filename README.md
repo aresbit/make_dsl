@@ -31,7 +31,7 @@ The compiler follows a 2-stage architecture:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd Graydon_dsl
+cd make_dsl
 
 # Build the project
 dune build
@@ -44,10 +44,10 @@ dune install
 
 ```bash
 # Compile a Makefile
-graydon_dsl examples/simple.mk
+make_dsl examples/simple.mk
 
 # Specify output executable name
-graydon_dsl examples/simple.mk mybuild
+make_dsl examples/simple.mk mybuild
 
 # Run the generated build system
 ./mybuild
@@ -114,7 +114,7 @@ myapp: $(OBJECTS)
 
 ### Project Structure
 ```
-Graydon_dsl/
+make_dsl/
 ├── src/
 │   ├── lexer.mll          # Lexical analyzer
 │   ├── parser.mly         # Parser grammar

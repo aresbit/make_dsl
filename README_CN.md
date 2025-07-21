@@ -31,7 +31,7 @@
 ```bash
 # 克隆仓库
 git clone <仓库地址>
-cd Graydon_dsl
+cd make_dsl
 
 # 构建项目
 dune build
@@ -44,10 +44,10 @@ dune install
 
 ```bash
 # 编译 Makefile
-graydon_dsl examples/simple.mk
+make_dsl examples/simple.mk
 
 # 指定输出可执行文件名
-graydon_dsl examples/simple.mk mybuild
+make_dsl examples/simple.mk mybuild
 
 # 运行生成的构建系统
 ./mybuild
@@ -114,7 +114,7 @@ myapp: $(OBJECTS)
 
 ### 项目结构
 ```
-Graydon_dsl/
+make_dsl/
 ├── src/
 │   ├── lexer.mll          # 词法分析器
 │   ├── parser.mly         # 解析器语法
