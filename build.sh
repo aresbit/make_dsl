@@ -25,7 +25,7 @@ CFLAGS = -Wall -O2
 TARGET = hello
 
 $(TARGET): main.c
-    $(CC) $(CFLAGS) -o $(TARGET) main.c
+	$(CC) $(CFLAGS) -o $(TARGET) main.c
 EOF
 
 echo "Created test Makefile with content:"

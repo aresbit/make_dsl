@@ -14,6 +14,7 @@ let compile_file input_file output_file =
     
     (* 读取输入文件 *)
     let content = read_file input_file in
+    Printf.printf "File content:\n%s\n---\n" content;
     
     (* 创建词法分析器缓冲区 *)
     let lexbuf = Lexing.from_string content in
@@ -32,7 +33,18 @@ let compile_file input_file output_file =
     let ocaml_file = 
       try Filename.chop_extension output_file ^ ".ml"
       with Invalid_argument _ -> output_file ^ ".ml" in
+    Printf.printf "Generating OCaml file: %s\n" ocaml_file;
     Codegen.write_ocaml_file ocaml_file env rules;
+    
+    (* 检查生成的文件 *)
+    if Sys.file_exists ocaml_file then begin
+      Printf.printf "OCaml file generated successfully\n";
+      let ocaml_content = read_file ocaml_file in
+      Printf.printf "Generated OCaml code:\n%s\n---\n" ocaml_content;
+    end else begin
+      Printf.eprintf "Failed to generate OCaml file\n";
+      exit 1
+    end;
     
     (* 编译OCaml到可执行文件 *)
     let compile_cmd = 

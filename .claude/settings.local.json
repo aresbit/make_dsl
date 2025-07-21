@@ -20,7 +20,8 @@
       "Bash(dune build:*)",
       "Bash(dune:*)",
       "Bash(chmod:*)",
-      "Bash(./simple_build:*)"
+      "Bash(./simple_build:*)",
+      "Bash(_build/default/src/main.exe:*)"
     ],
     "deny": []
   }
