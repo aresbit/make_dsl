@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(./build.sh)",
+      "Bash(../_build/default/src/main.exe:*)",
+      "Bash(./simple_working_test)",
+      "Bash(./examples/simple_working_test)",
+      "Bash(dune build)",
+      "Bash(./_build/default/src/main.exe:*)",
+      "Bash(echo:*)",
+      "Bash(ocaml:*)",
+      "Bash(cat:*)",
+      "Bash(rm:*)",
+      "Bash(od:*)",
+      "Bash(dune exec:*)",
+      "Bash(./a.out)",
+      "Bash(find:*)",
+      "Bash(./debug_lexer:*)",
+      "Bash(dune build:*)",
+      "Bash(dune:*)",
+      "Bash(chmod:*)",
+      "Bash(./simple_build:*)"
+    ],
+    "deny": []
+  }
+}

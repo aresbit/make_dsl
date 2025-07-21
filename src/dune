@@ -1,0 +1,9 @@
+(executable
+ (public_name graydon_dsl)
+ (name main)
+ (modules main lexer parser ast semantic codegen)
+ (libraries unix str))
+
+(ocamllex lexer)
+
+(ocamlyacc parser)
