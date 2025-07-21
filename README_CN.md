@@ -1,4 +1,4 @@
-# Graydon DSL - Makefile 编译器
+# Make DSL - Makefile 编译器
 
 一个快速的 DSL 编译器，用于 Make(1) 构建系统语言的子集，灵感来自 Graydon 的 "One-Day Compilers" 系列演讲。
 

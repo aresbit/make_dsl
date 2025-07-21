@@ -1,4 +1,4 @@
-# Graydon DSL - A Makefile Compiler
+# Make DSL - A Makefile Compiler
 
 A rapid DSL compiler for a subset of the Make(1) build system language, inspired by Graydon's "One-Day Compilers" talk series.
 

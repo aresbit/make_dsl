@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-echo "Building Graydon DSL compiler..."
+echo "Building Make DSL compiler..."
 
 # Build the compiler
 dune build
 
-echo "✓ Graydon DSL compiler built successfully"
+echo "✓ Make DSL compiler built successfully"
 
 # Test with simple example
 echo "Testing with working makefile..."
@@ -25,7 +25,7 @@ CFLAGS = -Wall -O2
 TARGET = hello
 
 $(TARGET): main.c
-	$(CC) $(CFLAGS) -o $(TARGET) main.c
+    $(CC) $(CFLAGS) -o $(TARGET) main.c
 EOF
 
 echo "Created test Makefile with content:"
@@ -38,14 +38,14 @@ cat > main.c << 'EOF'
 #include <stdio.h>
 
 int main() {
-    printf("Hello from Graydon DSL compiled makefile!\n");
+    printf("Hello from Make DSL compiled makefile!\n");
     return 0;
 }
 EOF
 
-echo "Building test makefile with Graydon DSL compiler..."
+echo "Building test makefile with Make DSL compiler..."
 
-# Use the compiled Graydon DSL compiler to compile the Makefile
+# Use the compiled Make DSL compiler to compile the Makefile
 ../_build/default/src/main.exe Makefile simple_build
 
 if [ -f "simple_build" ]; then
@@ -81,7 +81,7 @@ fi
 
 echo ""
 echo "🎉 Compiler is working! All tests passed!"
-echo "✓ Graydon DSL compiler built successfully"
+echo "✓ Make DSL compiler built successfully"
 echo "✓ Makefile compilation successful" 
 echo "✓ Generated build system works correctly"
 echo "✓ Final program executes properly"
