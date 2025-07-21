@@ -41,16 +41,37 @@ dune install
 ```
 
 ### Usage
+see build.sh or
 
 ```bash
-# Compile a Makefile
-make_dsl examples/simple.mk
+# 步骤1：编译make DSL编译器
+dune build
+# 生成：./_build/default/src/main.exe
 
-# Specify output executable name
-make_dsl examples/simple.mk mybuild
+# 步骤2：准备一个Makefile
+cat > Makefile << 'EOF'
+CC = gcc
+CFLAGS = -Wall -O2
+TARGET = hello
 
-# Run the generated build system
-./mybuild
+$(TARGET): main.c
+	$(CC) $(CFLAGS) -o $(TARGET) main.c
+
+clean:
+	rm -f $(TARGET)
+EOF
+
+# 步骤3：用make编译器编译Makefile
+./_build/default/src/main.exe Makefile my_build_tool
+# 这一步做了：
+# - 读取Makefile
+# - 解析成AST
+# - 生成OCaml代码（my_build_tool.ml）
+# - 编译OCaml代码成可执行文件（my_build_tool）
+
+# 步骤4：使用生成的构建工具
+./my_build_tool
+# 这会执行Makefile中定义的构建规则
 ```
 
 ## Supported Syntax
@@ -71,7 +92,7 @@ program: $(OBJECTS)
 	$(CC) $(CFLAGS) -c $< -o $@
 ```
 
-### Special Variables
+### Special Variables--todo
 - `$@` - Target name
 - `$^` - All dependencies
 - `$<<` - First dependency
@@ -188,4 +209,4 @@ MIT License - see LICENSE file for details.
 
 ## Contributing
 
-Contributions welcome! Please read CONTRIBUTING.md for guidelines.
+Contributions welcome! Please read SUPPORTED_SYNTAX_TODO.md for guidelines.
